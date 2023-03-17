@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <queries>
+        <package android:name="com.ling.aidl_service">
+            <!--<intent>
+                <action android:name="com.ling.SimpleService" />
+            </intent>-->
+        </package>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,7 +20,7 @@
         android:theme="@style/Theme.MyAidl"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.ling.aidl_client.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

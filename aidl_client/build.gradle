@@ -33,13 +33,6 @@ android {
         enabled = true
     }
 
-   /* sourceSets {
-        main {
-            // 配置 AIDL 文件路径
-            aidl.srcDirs = ['src/main/aidl/com/example/myaidl']
-        }
-    }*/
-
     kotlinOptions {
         jvmTarget = '1.8'
     }

@@ -21,7 +21,7 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.example.SimpleService" />
+                <action android:name="com.ling.SimpleService" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>

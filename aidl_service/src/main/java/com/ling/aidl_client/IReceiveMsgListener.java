@@ -1,17 +1,14 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
  */
-package com.ling.aidl_service.services;
-// Declare any non-default types here with import statements
-
-public interface ISimpleInterface extends android.os.IInterface
+package com.ling.aidl_client;
+public interface IReceiveMsgListener extends android.os.IInterface
 {
-  /** Default implementation for ISimpleInterface. */
-  public static class Default implements ISimpleInterface
+  /** Default implementation for IReceiveMsgListener. */
+  public static class Default implements IReceiveMsgListener
   {
-    @Override public String getMessage(String mes) throws android.os.RemoteException
+    @Override public void onReceive(String msg) throws android.os.RemoteException
     {
-      return null;
     }
     @Override
     public android.os.IBinder asBinder() {
@@ -19,26 +16,26 @@ public interface ISimpleInterface extends android.os.IInterface
     }
   }
   /** Local-side IPC implementation stub class. */
-  public static abstract class Stub extends android.os.Binder implements ISimpleInterface
+  public static abstract class Stub extends android.os.Binder implements IReceiveMsgListener
   {
-    private static final String DESCRIPTOR = "com.example.myaidl.ISimpleInterface";
+    private static final String DESCRIPTOR = "com.ling.aidl_client.IReceiveMsgListener";
     /** Construct the stub at attach it to the interface. */
     public Stub()
     {
       this.attachInterface(this, DESCRIPTOR);
     }
     /**
-     * Cast an IBinder object into an com.example.myaidl.ISimpleInterface interface,
+     * Cast an IBinder object into an com.ling.aidl_client.IReceiveMsgListener interface,
      * generating a proxy if needed.
      */
-    public static ISimpleInterface asInterface(android.os.IBinder obj)
+    public static IReceiveMsgListener asInterface(android.os.IBinder obj)
     {
       if ((obj==null)) {
         return null;
       }
       android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);
-      if (((iin!=null)&&(iin instanceof ISimpleInterface))) {
-        return ((ISimpleInterface)iin);
+      if (((iin!=null)&&(iin instanceof IReceiveMsgListener))) {
+        return ((IReceiveMsgListener)iin);
       }
       return new Proxy(obj);
     }
@@ -56,14 +53,13 @@ public interface ISimpleInterface extends android.os.IInterface
           reply.writeString(descriptor);
           return true;
         }
-        case TRANSACTION_getMessage:
+        case TRANSACTION_onReceive:
         {
           data.enforceInterface(descriptor);
           String _arg0;
           _arg0 = data.readString();
-          String _result = this.getMessage(_arg0);
+          this.onReceive(_arg0);
           reply.writeNoException();
-          reply.writeString(_result);
           return true;
         }
         default:
@@ -72,7 +68,7 @@ public interface ISimpleInterface extends android.os.IInterface
         }
       }
     }
-    private static class Proxy implements ISimpleInterface
+    private static class Proxy implements IReceiveMsgListener
     {
       private android.os.IBinder mRemote;
       Proxy(android.os.IBinder remote)
@@ -87,31 +83,29 @@ public interface ISimpleInterface extends android.os.IInterface
       {
         return DESCRIPTOR;
       }
-      @Override public String getMessage(String mes) throws android.os.RemoteException
+      @Override public void onReceive(String msg) throws android.os.RemoteException
       {
         android.os.Parcel _data = android.os.Parcel.obtain();
         android.os.Parcel _reply = android.os.Parcel.obtain();
-        String _result;
         try {
           _data.writeInterfaceToken(DESCRIPTOR);
-          _data.writeString(mes);
-          boolean _status = mRemote.transact(Stub.TRANSACTION_getMessage, _data, _reply, 0);
+          _data.writeString(msg);
+          boolean _status = mRemote.transact(Stub.TRANSACTION_onReceive, _data, _reply, 0);
           if (!_status && getDefaultImpl() != null) {
-            return getDefaultImpl().getMessage(mes);
+            getDefaultImpl().onReceive(msg);
+            return;
           }
           _reply.readException();
-          _result = _reply.readString();
         }
         finally {
           _reply.recycle();
           _data.recycle();
         }
-        return _result;
       }
-      public static ISimpleInterface sDefaultImpl;
+      public static IReceiveMsgListener sDefaultImpl;
     }
-    static final int TRANSACTION_getMessage = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
-    public static boolean setDefaultImpl(ISimpleInterface impl) {
+    static final int TRANSACTION_onReceive = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
+    public static boolean setDefaultImpl(IReceiveMsgListener impl) {
       // Only one user of this interface can use this function
       // at a time. This is a heuristic to detect if two different
       // users in the same process use this function.
@@ -124,9 +118,9 @@ public interface ISimpleInterface extends android.os.IInterface
       }
       return false;
     }
-    public static ISimpleInterface getDefaultImpl() {
+    public static IReceiveMsgListener getDefaultImpl() {
       return Proxy.sDefaultImpl;
     }
   }
-  public String getMessage(String mes) throws android.os.RemoteException;
+  public void onReceive(String msg) throws android.os.RemoteException;
 }

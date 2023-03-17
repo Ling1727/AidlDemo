@@ -4,11 +4,19 @@
     <data>
 
         <variable
-            name="send"
+            name="request"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="binding"
             type="android.view.View.OnClickListener" />
 
         <variable
             name="message"
+            type="String" />
+
+        <variable
+            name="serviceAction"
             type="String" />
 
     </data>
@@ -18,30 +26,49 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context="com.ling.aidl_client.MainActivity">
 
-        <EditText
+
+        <ScrollView
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="16dp"
-            android:background="@null"
-            android:text="@{message}"
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bt_request"
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{message}" />
+        </ScrollView>
 
         <Button
+            android:id="@+id/bt_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
-            android:onClick="@{send}"
-            android:text="click"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginBottom="50dp"
+            android:onClick="@{request}"
+            android:text="request"
+            app:layout_constraintLeft_toRightOf="@id/bt_binding"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
+        <Button
+            android:id="@+id/bt_binding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:onClick="@{binding}"
+            android:text="@{serviceAction}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/bt_request"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
